@@ -1,0 +1,331 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    position: fixed; 
+    width: 100%;
+    background: rgba(255, 255, 255, 0); 
+    z-index: 1000; 
+}
+header h1 {
+    margin: 0;
+    padding: 0 20px;
+}
+.navbar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding:auto;
+    padding-left: 1%;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.8); 
+}
+
+.navbar-nav {
+    list-style-type: none; 
+    margin: 0;
+    padding: 20px;
+    padding-right: 80px;
+    display: flex; 
+}
+
+.nav-item {
+    margin-right: 10px; 
+}
+
+.nav-link {
+    color: #fff; 
+    text-decoration: none; 
+    padding: 10px; 
+    transition: color 0.5s ease; 
+    font-size: 1.5em;
+}
+
+.nav-link:hover {
+    color: #e52600;
+}
+
+.nav-item {
+    margin-right: 10px;
+}
+
+.nav-link.active {
+    color: #000000; 
+}
+
+.logo {
+    display: flex;
+    justify-content: start;
+}
+
+.logo img {
+    height: 3.5em; 
+    width: auto;
+}
+
+
+ section {
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.main-section {
+    width: 100%;
+    background: url('img/res_mu_gaikoku_page1.jpg') no-repeat center center;
+    background-size: cover; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+}
+
+.main-section h1 {
+    margin: 0;
+    font-size: 3em;
+}
+
+.main-section p {
+    margin: 10px 0 0;
+    font-size: 1.5em;
+}
+
+.menu-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000000;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 100%;
+}   
+
+.box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    padding-right: 5%;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+
+.box img {
+    width: 20%;
+    height: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.box h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.box p {
+    font-size: 16px;
+    color: #666;
+}
+
+.box .price {
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+form {
+    max-width: 300px;
+    margin: 0 auto;
+}
+form div {
+    margin-bottom: 15px;
+}
+form label {
+    display: block;
+}
+form input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+form button:hover {
+    background-color: #0056b3;
+}
+.dropdown {
+    position: relative;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+.dropdown-item {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    padding: 0.9rem 2rem;
+    font-family: Arial, sans-serif;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 500px;
+    overflow: hidden;
+    background: #8d8f8b79;
+    color: ghostwhite;
+   }
+   
+   .dropdown-item span {
+    position: relative;
+    z-index: 10;
+    transition: color 0.4s;
+   }
+   
+   .dropdown-item:hover span {
+    color: black;
+   }
+   
+   .dropdown-item::before,
+   .dropdown-item::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+   }
+   
+   .dropdown-item::before {
+    content: "";
+    background: #000;
+    width: 120%;
+    left: -10%;
+    transform: skew(30deg);
+    transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+   }
+   
+   .dropdown-item:hover::before {
+    transform: translate3d(100%, 0, 0);
+   }
+
+
+
+
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column; 
+    }
+    .nav-item {
+        margin-bottom: 5px;
+    }
+}
+
+
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    grid-template-rows: auto;
+    gap: 0; 
+    width: 100%;
+    height: 100vh;
+}
+
+.bento-item {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border: 1px solid #f5f5f5; 
+}
+
+.item1 {
+    grid-column: span 1; 
+    grid-row: span 1;  
+}
+
+.item2 {
+    grid-column: span 1; 
+    grid-row: span 1;    
+}
+
+.item3 {
+    grid-column: span 2; 
+    grid-row: span 2;   
+}
+
+.item4 {
+    grid-column: span 2; 
+    grid-row: span 1;    
+}
+
+.item5 {
+    grid-column: span 2; 
+    grid-row: span 2;   
+}
+
+.item6 {
+    grid-column: span 1; 
+    grid-row: span 1;   
+}
+
+.item7 {
+    grid-column: span 1;
+    grid-row: span 2    ;    
+}
+
+.item8 {
+    grid-column: span 3; 
+    grid-row: span 1;    
+}
