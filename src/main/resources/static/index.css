@@ -2,6 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     font-family: Arial, sans-serif;
 }
 
@@ -78,23 +79,20 @@ header h1 {
 
 .main-section {
     width: 100%;
+    height: 100vh;
     background: url('img/res_mu_gaikoku_page1.jpg') no-repeat center center;
     background-size: cover; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center; 
+    position: relative;
+    overflow: hidden;
 }
 
-.main-section h1 {
-    margin: 0;
-    font-size: 3em;
-}
-
-.main-section p {
-    margin: 10px 0 0;
-    font-size: 1.5em;
+.main-section img {
+    position: absolute;
+    bottom: 5px; 
+    right: 10px; 
+    width: auto;
+    max-width: 40%; 
+    height: auto;
 }
 
 .menu-section {
@@ -108,48 +106,76 @@ header h1 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: baseline;
+    align-items: flex-start;
     justify-content: space-between;
     width: 100%;
 }   
 
-.box{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    padding-right: 5%;
+
+
+.bento-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
+    grid-template-rows: auto;
+    gap: 0; 
     width: 100%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100vh;
+}
+
+.bento-item {
     background-color: white;
-    margin-bottom: 20px;
-    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 1em;
+    border: 1px solid #f5f5f5; 
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
-.box img {
-    width: 20%;
-    height: 100%;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.item1 {
+    grid-column: span 1; 
+    grid-row: span 1;  
 }
 
-.box h3 {
-    font-size: 2rem;
-    margin-bottom: 10px;
+.item2 {
+    grid-column: span 1; 
+    grid-row: span 1;    
 }
 
-.box p {
-    font-size: 16px;
-    color: #666;
+.item3 {
+    grid-column: span 2; 
+    grid-row: span 2;   
 }
 
-.box .price {
-    font-size: 2.3rem;
-    font-weight: bold;
-    color: #333;
-    margin-top: 10px;
+.item4 {
+    grid-column: span 2; 
+    grid-row: span 1;    
+}
+
+.item5 {
+    grid-column: span 2; 
+    grid-row: span 2;   
+}
+
+.item6 {
+    grid-column: span 1; 
+    grid-row: span 1;   
+}
+
+.item7 {
+    grid-column: span 1;
+    grid-row: span 2    ;    
+}
+
+.item8 {
+    grid-column: span 3; 
+    grid-row: span 1;    
 }
 
 
@@ -268,64 +294,4 @@ form button:hover {
     .nav-item {
         margin-bottom: 5px;
     }
-}
-
-
-.bento-container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    grid-template-rows: auto;
-    gap: 0; 
-    width: 100%;
-    height: 100vh;
-}
-
-.bento-item {
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    border: 1px solid #f5f5f5; 
-}
-
-.item1 {
-    grid-column: span 1; 
-    grid-row: span 1;  
-}
-
-.item2 {
-    grid-column: span 1; 
-    grid-row: span 1;    
-}
-
-.item3 {
-    grid-column: span 2; 
-    grid-row: span 2;   
-}
-
-.item4 {
-    grid-column: span 2; 
-    grid-row: span 1;    
-}
-
-.item5 {
-    grid-column: span 2; 
-    grid-row: span 2;   
-}
-
-.item6 {
-    grid-column: span 1; 
-    grid-row: span 1;   
-}
-
-.item7 {
-    grid-column: span 1;
-    grid-row: span 2    ;    
-}
-
-.item8 {
-    grid-column: span 3; 
-    grid-row: span 1;    
 }

@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const boxes = document.querySelectorAll('.box');
+    const boxes = document.querySelectorAll('.bento-item');
     boxes.forEach(box => {
         const id = box.getAttribute('data-id');
+        const imageUrl = box.getAttribute('data-image-url');
+        box.style.backgroundImage = `url(${imageUrl})`;
+        
         fetch(`http://localhost:8080/dishes/${id}`)
             .then(response => response.json())
             .then(data => {
