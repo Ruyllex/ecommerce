@@ -1,11 +1,9 @@
 package com.example.ecommerce.controller;
-import com.example.ecommerce.model.Dish;
-import com.example.ecommerce.model.Order;
-import com.example.ecommerce.model.OrderItem;
-import com.example.ecommerce.model.User;
+import com.example.ecommerce.model.*;
 import com.example.ecommerce.repository.DishRepository;
 import com.example.ecommerce.repository.OrderRepository;
 import com.example.ecommerce.repository.UserRepository;
+import com.example.ecommerce.service.DishService;
 import com.example.ecommerce.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/orders")
@@ -37,6 +36,7 @@ public class OrderController {
     public int obtainTotalPriceOrder(@PathVariable Long id){
         return orderService.obtainOrderPrice(id);
     }
+    /*
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
 
@@ -57,5 +57,25 @@ public class OrderController {
         order.setUser(userOptional.get());
         Order savedOrder = orderRepository.save(order);
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
+    }
+    */
+    @PostMapping
+    public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
+        Order order = new Order();
+        order.setTotal(orderDTO.getTotal());
+
+        List<OrderItem> orderItems = orderDTO.getItems().stream()
+                .map(itemDTO -> {
+                    OrderItem orderItem = new OrderItem();
+                    OrderItem.setDish(itemDTO);
+                    return orderItem;
+                })
+                .collect(Collectors.toList());
+
+        order.setItems(orderItems);
+
+        Order savedOrder = orderRepository.save(order);
+
+        return ResponseEntity.status(201).body(savedOrder);
     }
 }

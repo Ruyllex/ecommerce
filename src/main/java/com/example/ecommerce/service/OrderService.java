@@ -3,6 +3,7 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.model.Order;
 import com.example.ecommerce.model.OrderItem;
 import com.example.ecommerce.repository.OrderRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +26,11 @@ public class OrderService {
     public void deleteOrder(Long id) {
         orderRepository.deleteById(id);
     }
+    @Transactional
     public Order createOrder(Order order) {
+        for (OrderItem item : order.getItems()) {
+            item.setOrder(order);
+        }
         return orderRepository.save(order);
     }
     public int obtainOrderPrice(Long id){

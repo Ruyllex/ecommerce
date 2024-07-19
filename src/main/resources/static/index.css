@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Shadows+Into+Light&display=swap');
+
 body, html {
     margin: 0;
     padding: 0;
@@ -5,6 +8,7 @@ body, html {
     width: 100%;
     font-family: Arial, sans-serif;
 }
+
 
 .header {
     position: fixed; 
@@ -102,6 +106,7 @@ header h1 {
     background-color: #000000;
 }
 
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -110,7 +115,47 @@ header h1 {
     justify-content: space-between;
     width: 100%;
 }   
+h3{
+    font-family: "Shadows Into Light", cursive;
+    font-size: 3rem;
+    color: #fff;
+}
+p {
+    font-family: "Cinzel", serif;
+    font-optical-sizing: auto;
+    font-weight: 0.5rem;
+    color:#fff;
+  }
+  
+  .price-button {
+    background-color: #28a745;
+    color: white; 
+    font-size: 16px; 
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px; 
+    cursor: pointer; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s; 
+  }
+  
 
+  .price-button:hover {
+    background-color: #218838; 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-2px); 
+  }
+
+  .price-button:active {
+    background-color: #1e7e34; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transform: translateY(0); 
+  }
+  
+  .price-button:focus {
+    outline: none; 
+    box-shadow: 0 0 0 4px rgba(72, 180, 97, 0.5); 
+  }
 
 
 .bento-container {
@@ -126,16 +171,66 @@ header h1 {
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    text-align: center;
+    flex-direction: column;
+    justify-content: center; 
     align-items: center;
+    text-align: center;
     font-size: 1em;
-    border: 1px solid #f5f5f5; 
-    background-size: cover; 
+    border: 1px solid #f5f5f5;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    position: relative;
+    overflow:visible;
+
 }
+.bento-item .bento-text {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    justify-content: center;    
+    max-height: 100%; 
+    overflow: auto;
+}
+
+.bento-item:hover .bento-text {
+    opacity: 1;
+}
+
+
+.bento-item h3 {
+    margin-bottom: -7px;
+}
+.bento-item.show {
+    opacity: 1; /* visible */
+    transform: translateY(0); /* sin desplazamiento */
+}
+
+
+.hidden1{
+    opacity: 0;
+    transition: all 2s;
+    filter: blur(5px);
+    transform: translateX(-100%);
+  }
+  .hidden2{
+    opacity: 0;
+    transition: all 2s;
+    filter: blur(5px);
+    transform: translateX(100%);
+  }
+.show{
+    opacity: 1;
+    filter: blur(0);
+    transform: translateX(0);
+   }
+
+
 
 
 .item1 {
@@ -149,7 +244,7 @@ header h1 {
 }
 
 .item3 {
-    grid-column: span 2; 
+    grid-column: span 1; 
     grid-row: span 2;   
 }
 
@@ -177,6 +272,104 @@ header h1 {
     grid-column: span 3; 
     grid-row: span 1;    
 }
+
+.cart-section {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Ancho fijo del contenedor */
+}
+
+/* Estilos para el contenedor interno del carrito */
+.cart-container {
+    overflow: hidden; /* Para ocultar elementos animados fuera del contenedor */
+}
+
+/* Estilos para el título "Carrito de Compras" */
+.cart-section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Estilos para la lista de elementos del carrito */
+#cart-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilos para cada ítem del carrito */
+#cart-items li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    opacity: 0; /* Inicialmente oculto */
+    transform: translateX(-100%); /* Fuera de la pantalla */
+    animation: slideIn 0.5s forwards; /* Animación de entrada */
+}
+
+/* Animación de entrada para los ítems del carrito */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Estilos para el enlace del total */
+#cart-total {
+    color: #000;
+    font-weight: bold;
+}
+
+/* Estilos para el botón de pago */
+#pay-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos hover para el botón de pago */
+#pay-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos hover para el botón de borrar */
+.delete-button:hover {
+    background-color: #ff1a1a;
+}
+
+
 
 
 footer {

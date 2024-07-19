@@ -25,4 +25,6 @@ public class Order {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public void setTotal(double total) {
+    }
 }
