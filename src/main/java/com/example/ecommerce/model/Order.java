@@ -27,4 +27,8 @@ public class Order {
 
     public void setTotal(double total) {
     }
+    public void addOrderItem(OrderItem item) {
+        items.add(item);
+        item.setOrder(this);
+    }
 }

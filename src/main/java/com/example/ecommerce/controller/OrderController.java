@@ -31,11 +31,12 @@ public class OrderController {
     public List<Order> getOrders() {
         return orderService.getOrder();
     }
-    
+
     @GetMapping("/total-price/{id}")
-    public int obtainTotalPriceOrder(@PathVariable Long id){
+    public int obtainTotalPriceOrder(@PathVariable Long id) {
         return orderService.obtainOrderPrice(id);
     }
+
     /*
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
@@ -59,8 +60,10 @@ public class OrderController {
         return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
     }
     */
+    /*
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
+        System.out.println(orderDTO.getItems().get(0).getDishId());
         Order order = new Order();
         order.setTotal(orderDTO.getTotal());
 
@@ -77,5 +80,36 @@ public class OrderController {
         Order savedOrder = orderRepository.save(order);
 
         return ResponseEntity.status(201).body(savedOrder);
+    }
+}
+     */
+    @PostMapping
+    public ResponseEntity<Order> createOrder(@RequestBody OrderRequest orderRequest) {
+        Order order = new Order();
+
+        // Configurar el usuario
+        User user = userRepository.findById(orderRequest.getUserId())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        order.setUser(user);
+
+        // Configurar el total
+        order.setTotal(orderRequest.getTotal());
+
+        // Agregar los items a la orden
+        for (OrderItemRequest itemRequest : orderRequest.getItems()) {
+            OrderItem orderItem = new OrderItem();
+
+            // Buscar el dish y configurarlo
+            Dish dish = dishRepository.findById(itemRequest.getDish())
+                    .orElseThrow(() -> new RuntimeException("Plato no encontrado"));
+            orderItem.setDish(dish);
+
+            orderItem.setQuantity(itemRequest.getQuantity());
+            order.addOrderItem(orderItem);
+        }
+
+        Order savedOrder = orderRepository.save(order);
+
+        return ResponseEntity.ok(savedOrder);
     }
 }

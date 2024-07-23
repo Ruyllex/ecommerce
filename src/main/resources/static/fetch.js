@@ -1,18 +1,21 @@
+
+const userId = 1;
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const boxes = document.querySelectorAll('.bento-item');
     const cartTotal = document.getElementById('cart-total');
     const cartItems = document.getElementById('cart-items');
-    const payButtom = document.getElementById('pay-button');
+    const payButton = document.getElementById('pay-button');
     let total = 0;
-    const userId = 1;
-    payButtom.addEventListener('click', sendOrder);
+
+    payButton.addEventListener('click', sendOrder);
     boxes.forEach(box => {
         const id = box.getAttribute('data-id');
         const imageUrl = box.getAttribute('data-image-url');
         box.style.backgroundImage = `url(${imageUrl})`;
-        
 
-        fetch(`http://localhost:8080/dishes/${id}`) 
+        fetch(`http://localhost:8080/dishes/${id}`)
             .then(response => response.json())
             .then(data => {
                 const bentoText = document.createElement('div');
@@ -29,21 +32,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 const price = document.createElement('a');
                 price.classList.add('price-button');
                 price.textContent = `$${data.price.toFixed(2)}`;
-                price.addEventListener('click',()=> {
-                    addToCart(data,id);
-
+                price.addEventListener('click', () => {
+                    addToCart(data, id);
                 });
                 bentoText.appendChild(price);
 
                 box.appendChild(bentoText);
             })
             .catch(error => console.error('Error al obtener los datos del plato:', error));
-            
     });
-    
 
-    function addToCart(item,id) {
-       
+    function addToCart(item, id) {
         const cartItem = document.createElement('li');
 
         cartItem.setAttribute('data-id', id);
@@ -61,24 +60,32 @@ document.addEventListener('DOMContentLoaded', function() {
         total += item.price;
         cartTotal.textContent = total.toFixed(2);
     }
+
     function removeFromCart(cartItem, price) {
         cartItems.removeChild(cartItem);
         total -= price;
         cartTotal.textContent = total.toFixed(2);
     }
+
     function sendOrder() {
         const orderItems = [];
         cartItems.querySelectorAll('li').forEach(cartItem => {
             const itemId = cartItem.getAttribute('data-id');
-            orderItems.push({ id: itemId });
+            orderItems.push({ dish: itemId, quantity: 1 });
         });
-    
+        const orderData = {
+            userId: userId,
+            total: total,
+            items: orderItems
+        };
+        console.log('Enviando orden:', orderData);
+
         fetch('http://localhost:8080/orders', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ items: orderItems, total: total, userId: userId })
+            body: JSON.stringify(orderData)
         })
         .then(response => response.json())
         .then(data => {
@@ -88,5 +95,4 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error al enviar la orden:', error));
     }
 });
-
 
