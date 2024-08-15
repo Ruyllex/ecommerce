@@ -36,53 +36,6 @@ public class OrderController {
     public int obtainTotalPriceOrder(@PathVariable Long id) {
         return orderService.obtainOrderPrice(id);
     }
-
-    /*
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
-
-        Optional<User> userOptional = userRepository.findById(order.getUser().getId());
-        if (userOptional.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        for (OrderItem item : order.getItems()) {
-            Optional<Dish> dishOptional = dishRepository.findById(item.getDish().getId());
-            if (dishOptional.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
-            item.setDish(dishOptional.get());
-            item.setOrder(order);
-        }
-
-        order.setUser(userOptional.get());
-        Order savedOrder = orderRepository.save(order);
-        return new ResponseEntity<>(savedOrder, HttpStatus.CREATED);
-    }
-    */
-    /*
-    @PostMapping
-    public ResponseEntity<Order> createOrder(@RequestBody OrderDTO orderDTO) {
-        System.out.println(orderDTO.getItems().get(0).getDishId());
-        Order order = new Order();
-        order.setTotal(orderDTO.getTotal());
-
-        List<OrderItem> orderItems = orderDTO.getItems().stream()
-                .map(itemDTO -> {
-                    OrderItem orderItem = new OrderItem();
-                    OrderItem.setDish(itemDTO);
-                    return orderItem;
-                })
-                .collect(Collectors.toList());
-
-        order.setItems(orderItems);
-
-        Order savedOrder = orderRepository.save(order);
-
-        return ResponseEntity.status(201).body(savedOrder);
-    }
-}
-     */
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody OrderRequest orderRequest) {
         Order order = new Order();
