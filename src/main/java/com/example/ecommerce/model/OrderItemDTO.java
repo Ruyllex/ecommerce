@@ -11,4 +11,7 @@ public class OrderItemDTO {
 
     public Long getId() {return dishId;
     }
+    public void setProductId(Long id){
+        dishId = id;
+    }
 }

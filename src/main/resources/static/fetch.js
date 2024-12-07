@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     payButton.addEventListener('click', sendOrder);
     boxes.forEach(box => {
         const id = box.getAttribute('data-id');
-        const imageUrl = box.getAttribute('data-image-url');
+        const imageUrl = box.getAttribute('image_url');
         box.style.backgroundImage = `url(${imageUrl})`;
 
         fetch(`http://localhost:8080/dishes/${id}`)
@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error al obtener los datos del plato:', error));
     });
+    
 
     function addToCart(item, id) {
         const cartItem = document.createElement('li');
@@ -90,9 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             console.log('Orden enviada:', data);
-            // Aquí puedes manejar la respuesta del servidor, como mostrar un mensaje de éxito
         })
         .catch(error => console.error('Error al enviar la orden:', error));
     }
-});
 
+});

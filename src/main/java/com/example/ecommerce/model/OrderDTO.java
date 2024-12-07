@@ -9,8 +9,12 @@ import java.util.List;
 @Getter
 
 public class OrderDTO {
+    private Long orderId;
     private Long userId;
     private List<OrderItemDTO> items;
     private double total;
 
+    public void setOrderId(Long id) {
+        orderId = id;
+    }
 }

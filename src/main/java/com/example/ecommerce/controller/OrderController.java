@@ -36,6 +36,7 @@ public class OrderController {
     public int obtainTotalPriceOrder(@PathVariable Long id) {
         return orderService.obtainOrderPrice(id);
     }
+    /*
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody OrderRequest orderRequest) {
         Order order = new Order();
@@ -64,5 +65,12 @@ public class OrderController {
         Order savedOrder = orderRepository.save(order);
 
         return ResponseEntity.ok(savedOrder);
+    }
+    */
+    @PostMapping
+    public ResponseEntity<OrderDTO> CreateOrderFromDto(@RequestBody OrderDTO orderDTO) {
+        Order order = OrderMapper.toEntity(orderDTO);
+        orderService.createOrder(order);
+        return ResponseEntity.status(HttpStatus.CREATED).body(OrderMapper.toDTO(order));
     }
 }

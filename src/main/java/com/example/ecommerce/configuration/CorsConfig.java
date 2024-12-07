@@ -3,7 +3,7 @@ package com.example.ecommerce.configuration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+/*
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
     @Override
@@ -14,3 +14,5 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowCredentials(true); // Permite el envío de cookies de autenticación (si es necesario)
     }
 }
+
+ */

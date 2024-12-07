@@ -17,4 +17,5 @@ public class Dish {
     @Column(columnDefinition = "text")
     private String description;
     private double price;
+    private String image_url;
 }
