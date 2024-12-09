@@ -23,6 +23,18 @@ $(document).ready(function(){
     }).scroll();
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.remove('shrink');
+        } else {
+            navbar.classList.add('shrink');
+        }
+    });
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section');
     let isScrolling = false;
